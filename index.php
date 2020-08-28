@@ -1,57 +1,45 @@
 <?php
 declare(strict_types=1);
+
+require_once 'vendor/autoload.php';
+require_once 'src/Core/Database/Database.php';
+require_once 'src/Core/Mailer/Mailer.php';
 require_once 'app/controllers/Controller.php';
+require_once 'app/controllers/AccountController.php';
+require_once 'app/controllers/ActivationController.php';
+require_once 'app/controllers/IndexController.php';
+require_once 'app/controllers/LoginController.php';
+require_once 'app/controllers/MakeReservationController.php';
+require_once 'app/controllers/MyReservationsController.php';
+require_once 'app/controllers/RegistrationController.php';
+require_once 'app/controllers/RepertoireController.php';
+require_once 'app/controllers/ReservationController.php';
+require_once 'app/controllers/ResetPasswordController.php';
+require_once 'app/controllers/ShowsController.php';
+require_once 'app/controllers/UsersController.php';
+//require_once 'classes/Bootstrap.php';
+require_once 'classes/Renderer.php';
 require_once 'config/session.php';
-require_once 'config/menu.php';
-// require_once ('Routes.php');
 
+use PHPMailer\PHPMailer\PHPMailer;
 
-// if(isset($_GET['url']))
-// $class_name = $_GET['url'];
-// $class_name = ucfirst($class_name);
+$db = new Database(require_once 'config/database.php');
+$PHPMailer = new PHPMailer();
+$mailer = new Mailer($PHPMailer);
 
-// function __autoload($class_name)
-// {
-//     if (file_exists('./classes/'.$class_name.'.php'))
-//         require_once './classes/'.$class_name.'.php';
-//     elseif (file_exists('./controllers'.$class_name.'.php'))
-//         require_once './controllers/'.$class_name.'.php';
-// }
+const DEFAULT_CONTROLLER = 'Index';
 
-if(isset($_GET['controller']))
-{
-    if($_GET['controller'] == 'index' OR $_GET['controller'] == 'index.php')
-        $controllerName = 'Index';
-    elseif($_GET['controller'] == 'aktywacja')
-        $controllerName = 'Activation';
-    elseif($_GET['controller'] == 'konto')
-        $controllerName = 'Account';
-    elseif($_GET['controller'] == 'mojerezerwacje')
-        $controllerName = 'MyReservations';
-    elseif($_GET['controller'] == 'repertuar')
-        $controllerName = 'Repertoire';
-    elseif($_GET['controller'] == 'reset')
-        $controllerName = 'ResetPassword';
-    elseif($_GET['controller'] == 'rezerwacja')
-        $controllerName = 'Reservation';
-    elseif($_GET['controller'] == 'seanse')
-        $controllerName = 'Shows';
-    elseif($_GET['controller'] == 'uzytkownicy')
-        $controllerName = 'Users';
-    elseif($_GET['controller'] == 'logowanie')
-        $controllerName = 'Login';
-    elseif($_GET['controller'] == 'rejestracja')
-        $controllerName = 'Registration';
-    elseif($_GET['controller'] == 'zarezerwuj')
-        $controllerName = 'MakeReservation';
-    else
-        die('Invalid route');
+$controllerName = DEFAULT_CONTROLLER;
+
+if (isset($_GET['controller']) && $_GET['controller'] != '') {
+    $controllerName = $_GET['controller'];
 }
+$controllerName = ucfirst($controllerName) . 'Controller';
 
-if (isset($controllerName) && file_exists('app/controllers/'.$controllerName.'Controller.php')) 
-{
-    require_once 'app/controllers/'.$controllerName.'Controller.php';
-    $controller = $controllerName.'Controller';
-    $controller = new $controller();
-    $controller->CreateView($controllerName);
+$filename = 'app/controllers/' . $controllerName . '.php';
+
+if (file_exists($filename)) {
+        $controller = new $controllerName($db);
+} else {
+    die('404');
 }
