@@ -1,0 +1,96 @@
+/*--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+--*/
+
+
+/* reset */
+
+
+/* z html */
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Lato", sans-serif
+}
+
+.navbar,
+h1,
+button {
+    font-family: "Montserrat", sans-serif
+}
+
+.navbar {
+    position: fixed;
+    width: 100%;
+    z-index: 1 color: #fff!important;
+    background-color: #f44336!important
+}
+
+.menu-item-left,
+.menu-item-login {
+    padding: 8px 16px;
+    width: auto;
+    border: none;
+    display: block;
+    outline: 0 border: none;
+    display: inline-block;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background-color: inherit;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    padding: 12px 24px!important
+}
+
+.menu-item-left {
+    float: left;
+}
+
+.menu-item-login {
+    float: right;
+}
+
+.navbar>h4 {
+    padding: 12px 24px!important margin-top: 2px;
+    margin-bottom: 2px;
+    white-space: nowrap;
+}
+
+.navbar>a:hover {
+    color: #000!important;
+    background-color: #ccc!important;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+    text-decoration: none;
+}
+
+.navbar-fixed-bottom>p,
+.navbar-fixed-bottom>a {
+    text-align: center;
+}
+
+legend {
+    color: inherit;
+    display: table;
+    max-width: 100%;
+    padding: 0;
+    white-space: normal
+}
+
+a {
+    color: inherit
+}
+
+
+/* z html - koniec */
