@@ -9,7 +9,8 @@ abstract class Controller
     protected $errors;
     public $className;
     public $action;
-    public $id;
+    protected $id;
+    protected $id2;
     const DEFAULT_METHOD = 'IndexAction';
 
     public function __construct($db = null)
@@ -18,6 +19,7 @@ abstract class Controller
         $this->className = $this->getNameOfTheClass();
         $this->action = $this->getAction();
         $this->id = $this->getId();
+        $this->id2 = $this->getId2();
         $this->run();
     }
 
@@ -52,12 +54,55 @@ abstract class Controller
             return $this->id = null;
     }
 
+    protected function getId2()
+    {
+        if(isset($_GET['id2']) && $_GET['id2'] != '')
+            return $this->id2 = $_GET['id2'];
+        if(isset($_POST['id2']) && $_POST['id2'] != '')
+            return $this->id2 = $_POST['id2'];
+        else
+            return $this->id2 = null;
+    }
+
     public function run()
     {
         $methodName = $this->action;
-        if(!is_null($this->id))
+        if(!is_null($this->id2) && !is_null($this->id)) {
+            $this->$methodName($this->id, $this->id2);
+        } elseif(!is_null($this->id)) {
             $this->$methodName($this->id);
-        else
+        } else {
             $this->$methodName();
+        }
+    }
+
+    protected function isAdmin()
+    {
+        if(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1)
+            return true;
+        return false;
+    }
+
+    protected function isLoggedIn()
+    {
+        if(isset($_SESSION['username']) && $_SESSION['username'] != '')
+            return true;
+        return false;
+    }
+
+    protected function auth()
+    {
+        if(!$this->isLoggedIn()) {
+            header('location: '._BASE_URL_.'index');
+            die();
+        }
+    }
+
+    protected function adminAuth()
+    {
+        if(!$this->isAdmin()) {
+            header('location: '._BASE_URL_.'index');
+            die();
+        }
     }
 }

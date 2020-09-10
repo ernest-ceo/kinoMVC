@@ -35,7 +35,7 @@ if(isset($_SESSION['username']))
                     <div class="form-group"><button class="btn btn-primary btn-xl" type="submit" name="logIn" value="logIn">Zaloguj</button></div>
 
                 </form>
-                <p class="text-left"><a href="reset.php">Zapomniałem hasła</a></p>
+                <p class="text-left"><a href="<?=_BASE_URL_.'ResetPassword'?>">Zapomniałem hasła</a></p>
 
             </div>
         </div>

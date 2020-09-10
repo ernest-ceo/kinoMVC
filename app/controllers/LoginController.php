@@ -42,6 +42,7 @@ class LoginController extends Controller
             $_SESSION['username'] = $userData['username'];
             $_SESSION['user_id'] = $userData['id'];
             $_SESSION['is_admin'] = $userData['is_admin'];
+            $_SESSION['user_email'] = $userData['email'];
         }
     }
 
@@ -56,7 +57,7 @@ class LoginController extends Controller
 
     public function logout()
     {
-        unset($_SESSION['username']);
+        session_destroy();
         header('location: '._BASE_URL_.'index');
     }
 }

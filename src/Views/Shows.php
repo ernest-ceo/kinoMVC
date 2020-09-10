@@ -19,7 +19,7 @@
                 </thead>
                 <tbody>
                 <?php
-                foreach ($filmShowsArray as $filmShow)
+                foreach ($options['filmShows'] as $filmShow)
                 {
                     ?>
                     <tr>
@@ -28,7 +28,7 @@
                         <td class="text-center"><?=$filmShow['date']?></td>
                         <td class="text-center"><?=$filmShow['time']?></td>
                         <td class="text-center"><?=$filmShow['hall_id']?></td>
-                        <td><a class="btn btn-primary btn-xl" href="seanse.php?id=<?=$filmShow['id']?>">Pokaż rezerwacje</a></td>
+                        <td><a class="btn btn-primary btn-xl" href="<?=_BASE_URL_.'shows/showReservations/'.$filmShow['id']?>">Pokaż rezerwacje</a></td>
                     </tr>
                     <?php
                 }

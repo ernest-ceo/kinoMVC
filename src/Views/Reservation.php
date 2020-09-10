@@ -27,8 +27,8 @@ declare(strict_types=1);
                     </thead>
                     <tbody>
                     <?php
-                    if (is_array($freeSeatsArray) && sizeof($freeSeatsArray) != 0) {
-                    foreach($freeSeatsArray as $freeSeat)
+                    if (is_array($options['freeSeats']) && sizeof($options['freeSeats']) != 0) {
+                    foreach($options['freeSeats'] as $freeSeat)
                     {
                         ?>
                         <tr>
@@ -39,7 +39,7 @@ declare(strict_types=1);
                                 <?=$freeSeat['seat_number']?>
                             </td>
                             <td class="text-center">
-                                <a href="zarezerwuj.php?seatID=<?=$freeSeat['id']?>&showID=<?=$_GET['id']?>">
+                                <a href="<?=_BASE_URL_.'MakeReservation/bookASeat/'.$freeSeat['id'].'/'.$_GET['id']?>">
                                     <button class="btn btn-primary btn-xl">Wybierz miejsce</button>
                                 </a>
                             </td>

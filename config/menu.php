@@ -1,6 +1,6 @@
 <?php
 require_once 'session.php';
-if(isset($_SESSION['username'])&&!isset($_SESSION['isAdmin']))
+if(isset($_SESSION['username'])&&isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 0)
 {
     $menu = [
         _BASE_URL_."index" => "Strona główna",
@@ -8,7 +8,7 @@ if(isset($_SESSION['username'])&&!isset($_SESSION['isAdmin']))
         _BASE_URL_."account" => "Konto",
     ];
 }
-elseif(isset($_SESSION['username'])&&isset($_SESSION['isAdmin']))
+elseif(isset($_SESSION['username'])&&isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1)
 {
     $menu = [
         _BASE_URL_."index" => "Strona główna",

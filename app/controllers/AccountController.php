@@ -12,6 +12,10 @@ class AccountController extends Controller
 
     public function IndexAction()
     {
+        if(!isset($_SESSION['username'])) {
+            header('location: '._BASE_URL_.'index');
+            die();
+        }
         $this->options['errors'] = $this->errors;
         $this->options['reservationList'] = $this->loadUserReservationList();
         $this->renderer->render('Main', 'Account', $this->options);
@@ -47,12 +51,11 @@ class AccountController extends Controller
                 unset($this->options);
                 unset($this->errors);
                 return;
-            }
-            else {
-                $this->renderer->render('Main', 'Index');
+            } else {
+                session_destroy();
+                header('location: '._BASE_URL_.'index');
                 unset($this->options);
                 unset($this->errors);
-                unset($_SESSION);
                 return;
             }
         } else {

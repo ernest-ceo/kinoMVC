@@ -2,7 +2,7 @@
     <div class="container">
         <div class="table-responsive table-dark table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl">
             <h2 class="page-section-heading text-center text-light mb-0 popover-header">Informacje o użytkownikach</h2>
-            <form action="uzytkownicy.php" method="post">
+            <form action="<?=_BASE_URL_.'users'?>" method="post">
                 <table class="table table-dark">
                     <thead>
                     <tr>
@@ -17,8 +17,8 @@
                     </thead>
                     <tbody>
                     <?php
-                    if (is_array($usersArray) &&sizeof($usersArray) != 0) {
-                    foreach ($usersArray as $user)
+                    if (is_array($options['users']) &&sizeof($options['users']) != 0) {
+                    foreach ($options['users'] as $user)
                     {
                         ?>
                         <tr>
@@ -28,7 +28,7 @@
                             <td class="text-center"><?=$user['banned']?></td>
                             <td class="text-center"><button class="btn btn-danger" type="submit" name="banning" value="<?=$user['id']?>">Zablokuj</button></td>
                             <td class="text-center"><button class="btn btn-success" type="submit" name="unbanning" value="<?=$user['id']?>">Odblokuj</button></td>
-                            <td class="text-center"><button class="btn btn-primary" type="submit" name="showReservations" value="<?=$user['id']?>">Historia rezerwacji</button></td>
+                            <td class="text-center"><a class="btn btn-primary" href="<?=_BASE_URL_.'users/showReservationsHistory/'.$user['id']?>">Historia rezerwacji</a></td>
                         </tr>
 
                         <?php
