@@ -13,7 +13,7 @@ if(isset($_SESSION['username']))
         <!-- Contact Section Form-->
         <div class="row">
             <div class="col-lg-8 mx-auto">
-                <form action="zaloguj.php" method="post">
+                <form action="<?=_BASE_URL_?>login" method="post">
                     <div class="control-group">
                         <div class="form-group controls mb-0 pb-2">
                             <label class="text-light" for="username">Nazwa użytkownika</label>
@@ -49,11 +49,11 @@ if(isset($_SESSION['username']))
 
     <?php
 }
-if(isset($_SESSION['info']))
+if(isset($options['errors']))
 {
-    ?>
-    <?=$_SESSION['info']?>
-    <?php
-    unset($_SESSION['info']);
+    foreach($options['errors'] as $error) {
+        ?><p class='text-center text-danger table-dark'><?=$error?></p><?php
+    }
+    unset($options['errors']);
 }
 ?>

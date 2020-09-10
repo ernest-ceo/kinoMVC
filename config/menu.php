@@ -3,27 +3,27 @@ require_once 'session.php';
 if(isset($_SESSION['username'])&&!isset($_SESSION['isAdmin']))
 {
     $menu = [
-        "index" => "Strona główna",
-        "repertoire" => "Repertuar",
-        "account" => "Konto",
+        _BASE_URL_."index" => "Strona główna",
+        _BASE_URL_."repertoire" => "Repertuar",
+        _BASE_URL_."account" => "Konto",
     ];
 }
 elseif(isset($_SESSION['username'])&&isset($_SESSION['isAdmin']))
 {
     $menu = [
-        "index" => "Strona główna",
-        "repertoire" => "Repertuar",
-        "account" => "Konto",
-        "shows" => "Seanse",
-        "users" => "Użytkownicy"
+        _BASE_URL_."index" => "Strona główna",
+        _BASE_URL_."repertoire" => "Repertuar",
+        _BASE_URL_."account" => "Konto",
+        _BASE_URL_."shows" => "Seanse",
+        _BASE_URL_."users" => "Użytkownicy"
     ];
 }
 elseif(!isset($_SESSION['username']))
 {
     $menu = [
-        "index" => "Strona główna",
-        "repertoire" => "Repertuar",
-        "login" => "Zaloguj",
-        "registration" => "Zarejestruj"
+        _BASE_URL_."index" => "Strona główna",
+        _BASE_URL_."repertoire" => "Repertuar",
+        _BASE_URL_."login" => "Zaloguj",
+        _BASE_URL_."registration" => "Zarejestruj"
     ];
 }

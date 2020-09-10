@@ -17,11 +17,22 @@ require_once 'app/controllers/ReservationController.php';
 require_once 'app/controllers/ResetPasswordController.php';
 require_once 'app/controllers/ShowsController.php';
 require_once 'app/controllers/UsersController.php';
+require_once 'app/models/Model.php';
+require_once 'app/models/IndexModel.php';
+require_once 'app/models/RepertoireModel.php';
+require_once 'app/models/LoginModel.php';
+require_once 'app/models/AccountModel.php';
 //require_once 'classes/Bootstrap.php';
 require_once 'classes/Renderer.php';
 require_once 'config/session.php';
 
+define('_BASE_URL_', 'http://localhost/kinoMVC/');
+//var_dump(_BASE_URL_);
+//exit();
+
 use PHPMailer\PHPMailer\PHPMailer;
+//use app\controllers\Controller;
+//use app\models\RepertoireModel;
 
 $db = new Database(require_once 'config/database.php');
 $PHPMailer = new PHPMailer();

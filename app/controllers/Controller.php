@@ -1,17 +1,20 @@
 <?php
 
+//namespace app\controllers;
+
 abstract class Controller
 {
     public $renderer;
-    public $db;
+    protected $model;
+    protected $errors;
     public $className;
     public $action;
     public $id;
+    const DEFAULT_METHOD = 'IndexAction';
 
-    public function __construct($db)
+    public function __construct($db = null)
     {
         $this->renderer = new Renderer();
-        $this->db = $db;
         $this->className = $this->getNameOfTheClass();
         $this->action = $this->getAction();
         $this->id = $this->getId();
@@ -22,14 +25,15 @@ abstract class Controller
     {
         if(isset($_GET['action']) && $_GET['action'] != '' && $_GET['action'] != null)
         {
-            $actionName = ucfirst($_GET['action']).'Action';
+            $actionName = ($_GET['action']);
             
             if(method_exists($this->className, $actionName))
                 return $this->action = $actionName;
             else
                 die('404');
-        } else {
-            return $this->action = 'IndexAction';
+        }
+        else {
+            return self::DEFAULT_METHOD;
         }
     }
 
@@ -42,6 +46,8 @@ abstract class Controller
     {
         if(isset($_GET['id']) && $_GET['id'] != '')
             return $this->id = $_GET['id'];
+        if(isset($_POST['id']) && $_POST['id'] != '')
+            return $this->id = $_POST['id'];
         else
             return $this->id = null;
     }

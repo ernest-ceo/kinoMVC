@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="./src/Views/css/styles.css" rel="stylesheet" />
+    <link href="http://localhost/kinoMVC/src/Views/css/styles.css" rel="stylesheet" />
 </head>
 
 <body id="page-top">
@@ -25,7 +25,7 @@
     <nav class="navbar navbar-expand-lg bg-dark text-uppercase fixed-top" id="mainNav">
         <div class="container">
             <a href="index">
-                <img class=" navbar-brand" src="./src/Views/images/Logo2.png" alt="Kino Jastrząb - Logo" title="Kino Jastrząb - Logo"/>
+                <img class=" navbar-brand" src="http://localhost/kinoMVC/src/Views/images/Logo2.png" alt="Kino Jastrząb - Logo" title="Kino Jastrząb - Logo"/>
             </a>
             <a class="navbar-brand js-scroll-trigger" href="#page-top">
                 <?php
@@ -56,7 +56,7 @@
                     if(isset($_SESSION['username']))
                     {
                         ?>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-center" href="login/logout/1">Wyloguj</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-center" href="<?=_BASE_URL_?>login/logout/1">Wyloguj</a></li>
                         <?php
                     }
                     ?>
@@ -72,7 +72,7 @@
             <?php
             if(isset($content))
             {
-                include $content;
+                include "$content.php";
             }
             ?>
 
@@ -91,7 +91,7 @@
     <script src="assets/mail/jqBootstrapValidation.js"></script>
     <script src="assets/mail/contact_me.js"></script>
     <!-- Core theme JS-->
-    <script src="./src/Views/js/scripts.js"></script>
+    <script src="http://localhost/kinoMVC/src/Views/js/scripts.js"></script>
 </div>
 </body>
 </html>

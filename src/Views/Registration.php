@@ -14,7 +14,7 @@ if(isset($_SESSION['username']))
         <!-- Contact Section Form-->
         <div class="row">
             <div class="col-lg-8 mx-auto">
-                <form action="zarejestruj.php" method="post">
+                <form action="registration" method="post">
                     <div class="control-group">
                         <div class="form-group controls mb-0 pb-2">
                             <label class="text-light" for="username">Nazwa użytkownika:</label>
@@ -27,7 +27,7 @@ if(isset($_SESSION['username']))
                     <div class="control-group">
                         <div class="form-group controls mb-0 pb-2">
                             <label class="text-light" for="newPassword">Hasło:</label>
-                            <input class="form-control" type="password" id="newPassword" name="newPassword" placeholder="Hasło" required="required" data-validation-required-message="Proszę podać hasło." />
+                            <input class="form-control" type="password" id="newPassword" name="newPassword" placeholder="Hasło"  data-validation-required-message="Proszę podać hasło." />
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
@@ -57,19 +57,14 @@ if(isset($_SESSION['username']))
         </div>
     </div>
 
-
-
-
-
-
-
     <?php
-    if(isset($_SESSION['info']))
+    if(isset($options))
     {
-        ?>
-        <?=$_SESSION['info']?><br><br><br><br>
-        <?php
-        unset($_SESSION['info']);
+        foreach($options as $option)
+        {
+            echo "<p class='text-center text-warning table-dark'>$option</p>";
+        }
+        unset($options);
     }
 }
 ?>
