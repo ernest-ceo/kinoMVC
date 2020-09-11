@@ -18,6 +18,7 @@ class ShowsController extends Controller
 
     public function showReservations($showID)
     {
+        $this->adminAuth();
         $this->options['reservationsList'] = $this->model->getAllReservationByShowID($showID);
         $this->renderer->render('Main', 'ReservationsList', $this->options);
     }

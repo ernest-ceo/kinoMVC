@@ -35,7 +35,7 @@ class AccountModel extends Model
         $query=$this->db->pdo->prepare('DELETE FROM `users`
                                                         WHERE `username`=:username');
         $query->bindValue(':username', $username, PDO::PARAM_STR);
-        return $result = $query->execute();
+        return (bool)($query->execute());
     }
 
     private function cancelAllReservations()

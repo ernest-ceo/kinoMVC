@@ -15,4 +15,26 @@ class LoginModel extends Model
             return $arrayResult;
         return false;
     }
+
+    public function userExists($username)
+    {
+        $query = 'SELECT `username`
+                    FROM `users`
+                   WHERE `username`=:username';
+        $stmt = $this->db->pdo->prepare($query);
+        $stmt->bindValue(':username', $username, PDO::PARAM_STR);
+        $stmt->execute();
+        return (bool)($result = $stmt->fetch());
+    }
+
+    public function isUserVerified($username)
+    {
+        $query = 'SELECT `username`
+                    FROM `users`
+                    WHERE `username`=:username AND `verified` = 1';
+        $stmt = $this->db->pdo->prepare($query);
+        $stmt->bindValue(':username', $username, PDO::PARAM_STR);
+        $stmt->execute();
+        return (bool)($result = $stmt->fetch());
+    }
 }

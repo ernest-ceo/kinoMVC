@@ -7,6 +7,7 @@ abstract class Controller
     public $renderer;
     protected $model;
     protected $errors;
+    protected $confirmations;
     public $className;
     public $action;
     protected $id;
@@ -86,6 +87,13 @@ abstract class Controller
     protected function isLoggedIn()
     {
         if(isset($_SESSION['username']) && $_SESSION['username'] != '')
+            return true;
+        return false;
+    }
+
+    protected function isBanned()
+    {
+        if(isset($_SESSION['banned']) && $_SESSION['banned'] == 1 OR !isset($_SESSION['username']))
             return true;
         return false;
     }

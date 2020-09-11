@@ -25,7 +25,6 @@
                         <td class="text-center"><?=$reservation['seat_row']?></td>
                         <td class="text-center"><?=$reservation['seat_number']?></td>
                     </tr>
-
                     <?php
                 }
                 ?>
@@ -34,10 +33,8 @@
             <?php
             } else {
                 ?>
-
                 </tbody>
                 </table>
-
                 <h6 class="text-center text-secondary mb-0 text-danger">Na ten seans nie dokonano rezerwacji.</h6>
                 <?php
             }

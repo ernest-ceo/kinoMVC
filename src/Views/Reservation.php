@@ -4,10 +4,26 @@ declare(strict_types=1);
 <section class="page-section">
     <div class="container">
         <?php
-        if(isset($_SESSION['info']))
+        if(isset($options['errors']))
         {
-            echo $_SESSION['info'];
-            unset($_SESSION['info']);
+            foreach($options['errors'] as $error)
+            {
+                ?>
+                <p class='text-center text-danger table-dark'><?=$error?></p>
+                <?php
+            }
+            unset($options['errors']);
+        }
+        if(isset($options['confirmations']))
+        {
+            foreach($options['confirmations'] as $confirmation)
+            {
+                ?>
+                <p class='text-center text-success table-dark'><?=$confirmation?></p>
+                <?php
+            }
+            unset($options['errors']);
+            unset($options['confirmations']);
         }
         ?>
     </div>
@@ -39,7 +55,7 @@ declare(strict_types=1);
                                 <?=$freeSeat['seat_number']?>
                             </td>
                             <td class="text-center">
-                                <a href="<?=_BASE_URL_.'MakeReservation/bookASeat/'.$freeSeat['id'].'/'.$_GET['id']?>">
+                                <a href="<?=_BASE_URL_.'MakeReservation/bookASeat/'.$freeSeat['id'].'/'.$options['show_id']?>">
                                     <button class="btn btn-primary btn-xl">Wybierz miejsce</button>
                                 </a>
                             </td>
@@ -57,7 +73,7 @@ declare(strict_types=1);
                     </table>
                     <h6 class="text-center text-secondary mb-0 text-danger">
                         Ten seans został wyprzedany. Zachęcamy do przejrzenia
-                        <a href="repertuar.php">repertuaru</a>
+                        <a href="<?=_BASE_URL_.'repertoire'?>">repertuaru</a>
                         , aby wybrać inny termin.
                     </h6>
                     <?php

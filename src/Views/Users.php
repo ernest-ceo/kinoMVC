@@ -1,3 +1,15 @@
+<?php
+if(isset($options['errors']))
+{
+    foreach($options['errors'] as $error)
+    {
+        ?>
+        <p class='text-center text-danger table-dark'><?=$error?></p>
+        <?php
+    }
+    unset($options['errors']);
+}
+?>
 <div class="page-section">
     <div class="container">
         <div class="table-responsive table-dark table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl">
@@ -30,14 +42,12 @@
                             <td class="text-center"><button class="btn btn-success" type="submit" name="unbanning" value="<?=$user['id']?>">Odblokuj</button></td>
                             <td class="text-center"><a class="btn btn-primary" href="<?=_BASE_URL_.'users/showReservationsHistory/'.$user['id']?>">Historia rezerwacji</a></td>
                         </tr>
-
                         <?php
                     }
                     ?>
                     </tbody>
                 </table>
             </form>
-
             <?php
             } else {
                 ?>
@@ -45,7 +55,6 @@
                 </table>
                 </form>
                 <h6 class="text-center text-secondary mb-0 text-danger">Brak danych do wyświetlenia.</h6>
-
                 <?php
             }
             ?>

@@ -56,4 +56,14 @@ if(isset($options['errors']))
     }
     unset($options['errors']);
 }
+if(isset($options['confirmations']))
+{
+    foreach($options['confirmations'] as $confirmation)
+    {
+        ?>
+        <p class='text-center text-success table-dark'><?=$confirmation?></p>
+        <?php
+    }
+    unset($options['errors']);
+}
 ?>

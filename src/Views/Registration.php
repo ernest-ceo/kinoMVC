@@ -1,16 +1,24 @@
-<?php
-
-if(isset($_SESSION['username']))
-{
-    header('location: index.php');
-} else {
-    ?>
-
-
     <div class="container">
         <!-- Contact Section Heading-->
         <h2 class="page-section-heading text-center text-uppercase text-light mb-0">Wprowadź dane niezbędne do rejestracji konta</h2>
-
+        <?php
+        if(isset($options['errors']))
+        {
+            foreach($options['errors'] as $error)
+            {
+                echo "<p class='text-center text-warning table-dark'>$error</p>";
+            }
+            unset($options);
+        }
+        if(isset($options['confirmations']))
+        {
+            foreach($options['confirmations'] as $confirmation)
+            {
+                echo "<p class='text-center text-success table-dark'>$confirmation</p>";
+            }
+            unset($options);
+        }
+        ?>
         <!-- Contact Section Form-->
         <div class="row">
             <div class="col-lg-8 mx-auto">
@@ -50,21 +58,9 @@ if(isset($_SESSION['username']))
 
 
                     <div class="form-group"><button class="btn btn-primary btn-xl" type="submit" name="register" value="register">Zarejestruj</button></div><br><br>
-
                 </form>
 
             </div>
         </div>
     </div>
 
-    <?php
-    if(isset($options))
-    {
-        foreach($options as $option)
-        {
-            echo "<p class='text-center text-warning table-dark'>$option</p>";
-        }
-        unset($options);
-    }
-}
-?>

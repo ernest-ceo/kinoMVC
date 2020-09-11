@@ -41,8 +41,8 @@ class MakeReservationModel extends Model
         $stmt->bindValue(':showID2', $showID, PDO::PARAM_INT);
         $stmt->bindValue(':username', $username, PDO::PARAM_STR);
         $stmt->bindValue(':resvkey', $resvkey, PDO::PARAM_STR);
-        $stmt->execute();
-        return (bool)$stmt->closeCursor();
+        return (bool)($stmt->execute());
+//        return (bool)$stmt->closeCursor();
     }
 
     public function insertReservationItemToReservationsHistory($seatID, $showID, $username)
@@ -58,5 +58,28 @@ class MakeReservationModel extends Model
         $stmt->bindValue(':showID2', $showID, PDO::PARAM_INT);
         $stmt->bindValue(':username', $username, PDO::PARAM_STR);
         return (bool)$stmt->execute();
+    }
+
+    public function verifyReservation($resvkey)
+    {
+        if($this->resvkeyExists($resvkey))
+        {
+            $query = $this->db->pdo->prepare('UPDATE `reservations` 
+                                                                    SET `confirmed`=1
+                                                                    WHERE `vkey`=:resvkey');
+            $query->bindValue(':resvkey', $resvkey, PDO::PARAM_STR);
+            return (bool)($query->execute());
+        }
+    }
+
+    private function resvkeyExists($resvkey)
+    {
+        $query = 'SELECT * FROM `reservations` WHERE `vkey`=:resvkey';
+        $stmt = $this->db->pdo->prepare($query);
+        $stmt->bindValue(':resvkey', $resvkey, PDO::PARAM_STR);
+        $result = $stmt->execute();
+        if($result) {
+            return (bool)$result = $stmt->fetch();
+        }
     }
 }

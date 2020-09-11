@@ -1,7 +1,16 @@
-
-
+<?php
+if(isset($options['errors']))
+{
+    foreach($options['errors'] as $error)
+    {
+        ?>
+        <p class='text-center text-danger table-dark'><?=$error?></p>
+        <?php
+    }
+    unset($options['errors']);
+}
+?>
 <div class="page-section">
-
     <div class="container">
         <h2 class="page-section-heading text-center text-light mb-0 popover-header">Seanse w Kinie Jastrząb</h2>
         <div class="table-responsive table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl">
@@ -14,7 +23,6 @@
                     <th class="text-center">Godzina</th>
                     <th class="text-center">Sala</th>
                     <th class="text-center"></th>
-
                 </tr>
                 </thead>
                 <tbody>

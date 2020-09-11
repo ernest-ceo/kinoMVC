@@ -5,7 +5,7 @@ class Mailer
 {
     public $mailer;
     public $users;
-    private const ROOT_URL = "http://bd19587.wsbpoz.solidhost.pl/kino/" ;
+//    private const ROOT_URL = "http://bd19587.wsbpoz.solidhost.pl/kino/" ;
 
     /**
      * Mailer constructor.
@@ -25,9 +25,12 @@ class Mailer
             );
             $this->mailer->CharSet = 'UTF-8';
             $this->mailer->isSMTP();
-            $this->mailer->Host = 'mail.bd19587.wsbpoz.solidhost.pl';
-            $this->mailer->Username = 'projektkinowsb@bd19587.wsbpoz.solidhost.pl';
-            $this->mailer->Password = 'projektkinoWSB1!';
+//            $this->mailer->Host = 'mail.bd19587.wsbpoz.solidhost.pl';
+//            $this->mailer->Username = 'projektkinowsb@bd19587.wsbpoz.solidhost.pl';
+//            $this->mailer->Password = 'projektkinoWSB1!';
+            $this->mailer->Host = 'smtp.mailtrap.io';
+            $this->mailer->Username = '20f99de4000faa';
+            $this->mailer->Password = '0a882300f33477';
             $this->mailer->SMTPAuth = true;
             $this->mailer->SMTPSecure = \PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
             $this->mailer->Port = 587;
@@ -49,7 +52,7 @@ class Mailer
             $this->mailer->addAddress($receiver);
             $this->mailer->isHTML(true);
             $this->mailer->Subject = 'Aktywacja konta';
-            $body = '<p>Witaj,</p><p>możesz teraz aktywować konto klikając w link.</p><a href="'.self::ROOT_URL.'aktywacja.php?vkey=' . $verificationKey . '">Aktywuj konto</a>';
+            $body = '<p>Witaj,</p><p>możesz teraz aktywować konto klikając w link.</p><a href="'._BASE_URL_.'Registration/activate/' . $verificationKey . '">Aktywuj konto</a>';
             $this->mailer->Body = $body;
             $this->mailer->AltBody = $body;
             $this->mailer->send();
@@ -66,14 +69,14 @@ class Mailer
      * @return bool
      * This method is responsible for sending the password reset message in case user forgot the password
      */
-    public function sendTheResetMessage(string $receiver, string $verificationKey)
+    public function sendResetMessage(string $receiver, string $verificationKey)
     {
         try {
             $this->mailer->setFrom('projektkinowsb@bd19587.wsbpoz.solidhost.pl', 'Kino');
             $this->mailer->addAddress($receiver);
             $this->mailer->isHTML(true);
             $this->mailer->Subject = 'Aktualizacja hasła';
-            $body = '<p>Witaj,</p><p>możesz ustawić nowe hasło klikając w link.</p><a href="'.self::ROOT_URL.'reset.php?vkey=' . $verificationKey . '">Ustaw nowe hasło</a>';
+            $body = '<p>Witaj,</p><p>możesz ustawić nowe hasło klikając w link.</p><a href="'._BASE_URL_.'ResetPassword/insertNewPassword/' . $verificationKey . '">Ustaw nowe hasło</a>';
             $this->mailer->Body = $body;
             $this->mailer->AltBody = $body;
             $this->mailer->send();
@@ -97,7 +100,7 @@ class Mailer
             $this->mailer->addAddress($receiver);
             $this->mailer->isHTML(true);
             $this->mailer->Subject = 'Potwierdzenie rezerwacji';
-            $body = '<p>Witaj,</p><p>możesz teraz potwierdzić rezerwację klikając w link.</p><a href="'.self::ROOT_URL.'aktywacja.php?resvkey=' . $verificationKey . '">Potwierdź rezerwację</a>';
+            $body = '<p>Witaj,</p><p>możesz teraz potwierdzić rezerwację klikając w link.</p><a href="'._BASE_URL_.'MakeReservation/confirm/' . $verificationKey . '">Potwierdź rezerwację</a>';
             $this->mailer->Body = $body;
             $this->mailer->AltBody = $body;
             $this->mailer->send();

@@ -1,3 +1,15 @@
+<?php
+if(isset($options['errors']))
+{
+    foreach($options['errors'] as $error)
+    {
+        ?>
+        <p class='text-center text-danger table-dark'><?=$error?></p>
+        <?php
+    }
+    unset($options['errors']);
+}
+?>
 <div class="page-section">
     <div class="container">
 
@@ -21,8 +33,6 @@
                     foreach ($reservationsList as $reservation)
                     {
                         ?>
-
-
                         <tr>
                             <td class="text-center"><?=$reservation['id']?></td>
                             <td class="text-center"><?=$reservation['title']?></td>
