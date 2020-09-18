@@ -20,8 +20,27 @@ class RepertoireController extends Controller
     public function showByRange($range = 'day')
     {
         $range = $this->getActiveRange();
-        $this->options['shows'] = $this->model->getFilmShowsByRange($range);
-        $this->renderer->render('Main', 'Repertoire', $this->options);
+
+        $shows = $this->model->getFilmShowsByRange($range);
+        if(isset($_SESSION['username'])) {
+            $welcome = 'Witaj ' . $_SESSION['username'] . '!';
+        } else {
+            $welcome = 'Witaj!';
+        }
+        if($_SESSION['banned'] == 1 OR !isset($_SESSION['username'])) {
+            $content = 'Repertoire.php';
+        } else {
+            $content = 'RepertoireLogged.php';
+        }
+
+            echo $this->twig->render('Main.php', array(
+                'welcome' => $welcome,
+                'menu' => $this->menu,
+                'url' => _BASE_URL_,
+                'content' => $content,
+                'shows' => $shows
+            ));
+//        $this->renderer->render('Main', 'Repertoire', $this->options);
         unset($this->options);
     }
 

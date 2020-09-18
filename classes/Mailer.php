@@ -5,13 +5,7 @@ class Mailer
 {
     public $mailer;
     public $users;
-//    private const ROOT_URL = "http://bd19587.wsbpoz.solidhost.pl/kino/" ;
 
-    /**
-     * Mailer constructor.
-     * @param $mailer
-     * This method sets parameters for external e-mail account from which messages are being sent
-     */
     public function __construct($mailer)
     {
         $this->mailer=$mailer;
@@ -35,16 +29,10 @@ class Mailer
             $this->mailer->SMTPSecure = \PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
             $this->mailer->Port = 587;
         } catch (Exception $e) {
-            $_SESSION['info'] = "<p class='text-center text-danger table-dark'>Nie udało się poprawnie zainicjować obiektu klasy Mailer.</p>";
+            $_SESSION['info'] = "Nie udało się poprawnie zainicjować obiektu klasy Mailer.";
         }
     }
 
-    /**
-     * @param string $receiver
-     * @param string $verificationKey
-     * @return bool
-     * This method is responsible for sending account activation message to the user who has just registered
-     */
     public function sendAccountActivationMessage(string $receiver, string $verificationKey)
     {
         try {
@@ -63,12 +51,6 @@ class Mailer
         }
     }
 
-    /**
-     * @param string $receiver
-     * @param string $verificationKey
-     * @return bool
-     * This method is responsible for sending the password reset message in case user forgot the password
-     */
     public function sendResetMessage(string $receiver, string $verificationKey)
     {
         try {
@@ -87,12 +69,6 @@ class Mailer
         }
     }
 
-    /**
-     * @param string $receiver
-     * @param string $verificationKey
-     * @return bool
-     * This method is responsible for sending reservation confirmation message in case user has made a reservation
-     */
     public function sendReservationConfirmationMessage(string $receiver, string $verificationKey)
     {
         try {

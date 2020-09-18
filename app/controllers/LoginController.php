@@ -20,7 +20,12 @@ class LoginController extends Controller
             header('location: '._BASE_URL_.'index');
             die();
         }
-        $this->renderer->render('Main', 'Login', $this->options);
+        echo $this->twig->render('Main.php', array(
+            'content' => 'Login.php',
+            'menu' => $this->menu,
+            'url' => _BASE_URL_
+        ));
+//        $this->renderer->render('Main', 'Login', $this->options);
     }
 
     public function postProcess()

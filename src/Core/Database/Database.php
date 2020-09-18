@@ -24,6 +24,8 @@ class Database
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         } catch (PDOException $e) {
+            $renderer = new Renderer();
+            $renderer->render('Main', 'Maintenance');
             echo 'Błąd połączenia z bazą danych';
             die;
         }

@@ -1,28 +1,10 @@
     <div class="container">
         <!-- Contact Section Heading-->
-        <h2 class="page-section-heading text-center text-uppercase text-light mb-0">Wprowadź dane niezbędne do rejestracji konta</h2>
-        <?php
-        if(isset($options['errors']))
-        {
-            foreach($options['errors'] as $error)
-            {
-                echo "<p class='text-center text-warning table-dark'>$error</p>";
-            }
-            unset($options);
-        }
-        if(isset($options['confirmations']))
-        {
-            foreach($options['confirmations'] as $confirmation)
-            {
-                echo "<p class='text-center text-success table-dark'>$confirmation</p>";
-            }
-            unset($options);
-        }
-        ?>
+        <h2 class="page-section-heading text-center text-uppercase text-light mb-0">Wprowadź dane do rejestracji</h2>
         <!-- Contact Section Form-->
         <div class="row">
             <div class="col-lg-8 mx-auto">
-                <form action="registration" method="post">
+                <form action="{{url}}registration" method="post">
                     <div class="control-group">
                         <div class="form-group controls mb-0 pb-2">
                             <label class="text-light" for="username">Nazwa użytkownika:</label>
@@ -30,8 +12,6 @@
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
-
-
                     <div class="control-group">
                         <div class="form-group controls mb-0 pb-2">
                             <label class="text-light" for="newPassword">Hasło:</label>
@@ -39,7 +19,6 @@
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
-
                     <div class="control-group">
                         <div class="form-group controls mb-0 pb-2">
                             <label class="text-light" for="newPasswordValidate">Powtórz hasło:</label>
@@ -47,7 +26,6 @@
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
-
                     <div class="control-group">
                         <div class="form-group controls mb-0 pb-2">
                             <label class="text-light" for="userEmail">Adres e-mail:</label>
@@ -55,8 +33,6 @@
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
-
-
                     <div class="form-group"><button class="btn btn-primary btn-xl" type="submit" name="register" value="register">Zarejestruj</button></div><br><br>
                 </form>
 

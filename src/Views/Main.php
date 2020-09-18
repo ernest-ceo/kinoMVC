@@ -28,22 +28,7 @@
                 <img class=" navbar-brand" src="http://localhost/kinoMVC/src/Views/images/Logo2.png" alt="Kino Jastrząb - Logo" title="Kino Jastrząb - Logo"/>
             </a>
             <a class="navbar-brand js-scroll-trigger" href="#page-top">
-                <?php
-                if(isset($greetingMessage))
-                {
-                    echo "<h4>".$greetingMessage."</h4>";
-                }
-                else
-                {
-                    if(isset($_SESSION['username']))
-                    {
-                        echo "<h4>Witaj ".$_SESSION['username']."!</h4>";
-                    } else {
-                        echo "<h4>Witaj!</h4>";
-                    }
-
-                }
-                ?>
+                <h4>{{welcome}}</h4>
             </a>
             <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
@@ -51,15 +36,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <?php
-                    include_once 'menu.php';
-                    if(isset($_SESSION['username']))
-                    {
-                        ?>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-center" href="<?=_BASE_URL_?>login/logout/1">Wyloguj</a></li>
-                        <?php
-                    }
-                    ?>
+                    {% include 'Menu.php' with menu %}
                 </ul>
             </div>
         </div>
@@ -69,17 +46,9 @@
         <div class="container">
             <br>
             <!-- here main content -->
-            <?php
-            if(isset($content))
-            {
-                include "$content.php";
-            }
-            ?>
-
+            {% include content %}
         </div>
-        <?php
-        include_once './src/Views/Footer.php';
-        ?>
+        {% include 'Footer.php' %}
     </section>
 
     <!-- Bootstrap core JS-->

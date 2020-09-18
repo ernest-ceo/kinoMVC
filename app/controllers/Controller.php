@@ -4,7 +4,9 @@
 
 abstract class Controller
 {
+    protected $menu;
     public $renderer;
+    protected $twig;
     protected $model;
     protected $errors;
     protected $confirmations;
@@ -16,7 +18,10 @@ abstract class Controller
 
     public function __construct($db = null)
     {
+        $loader = new \Twig\Loader\FilesystemLoader('src/Views');
+        $this->twig = new \Twig\Environment($loader);
         $this->renderer = new Renderer();
+        $this->menu = require 'c:/xampp/htdocs/kinoMVC/config/menu.php';
         $this->className = $this->getNameOfTheClass();
         $this->action = $this->getAction();
         $this->id = $this->getId();

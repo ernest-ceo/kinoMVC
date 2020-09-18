@@ -1,19 +1,12 @@
-<?php
-
-if(isset($_SESSION['username']))
-{
-    header('location: index.php');
-} else {
-    ?>
-
-    <!-- <section class="page-section"> -->
+    <br/>
+    <br/>
     <div class="container">
         <!-- Contact Section Heading-->
-        <h2 class="page-section-heading text-center text-uppercase text-light mb-0">Wprowadź dane do zalogowania</h2>
+        <h2 class="page-section-heading text-center text-uppercase text-light mb-0">Wprowadź dane logowania</h2>
         <!-- Contact Section Form-->
         <div class="row">
             <div class="col-lg-8 mx-auto">
-                <form action="<?=_BASE_URL_?>login" method="post">
+                <form action="{{url}}login" method="post">
                     <div class="control-group">
                         <div class="form-group controls mb-0 pb-2">
                             <label class="text-light" for="username">Nazwa użytkownika</label>
@@ -35,7 +28,7 @@ if(isset($_SESSION['username']))
                     <div class="form-group"><button class="btn btn-primary btn-xl" type="submit" name="logIn" value="logIn">Zaloguj</button></div>
 
                 </form>
-                <p class="text-left"><a href="<?=_BASE_URL_.'ResetPassword'?>">Zapomniałem hasła</a></p>
+                <p class="text-left"><a href="{{url}}ResetPassword'">Zapomniałem hasła</a></p>
 
             </div>
         </div>
