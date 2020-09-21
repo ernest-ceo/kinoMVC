@@ -18,38 +18,31 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php
-                if (is_array($options['reservationsHistory']) && sizeof($options['reservationsHistory']) != 0) {
-                foreach ($options['reservationsHistory'] as $reservation)
-                {
-                    ?>
-                    <tr>
-                        <td class="text-center"><?=$reservation['id']?></td>
-                        <td class="text-center"><?=$reservation['username']?></td>
-                        <td class="text-center"><?=$reservation['email']?></td>
-                        <td class="text-center"><?=$reservation['banned']?></td>
-                        <td class="text-center"><?=$reservation['title']?></td>
-                        <td class="text-center"><?=$reservation['date']?></td>
-                        <td class="text-center"><?=$reservation['time']?></td>
-                        <td class="text-center"><?=$reservation['hall_id']?></td>
-                        <td class="text-center"><?=$reservation['seat_row']?></td>
-                        <td class="text-center"><?=$reservation['seat_number']?></td>
-                    </tr>
-                    <?php
-                }
-                ?>
+
+                {% if options.reservationsHistory %}
+                {% for reservation in options.reservationsHistory %}
+                <tr>
+                    <td class="text-center">{{reservation.id}}</td>
+                    <td class="text-center">{{reservation.username}}?></td>
+                    <td class="text-center">{{reservation.email}}</td>
+                    <td class="text-center">{{reservation.banned}}</td>
+                    <td class="text-center">{{reservation.title}}</td>
+                    <td class="text-center">{{reservation.date}}</td>
+                    <td class="text-center">{{reservation.time}}</td>
+                    <td class="text-center">{{reservation.hall_id}}</td>
+                    <td class="text-center">{{reservation.seat_row}}</td>
+                    <td class="text-center">{{reservation.seat_number}}</td>
+                </tr>
+                {% endfor %}
+                
                 </tbody>
             </table>
-            <?php
-            } else {
-                ?>
+            {% else %}
                 </tbody>
                 </table>
                 <br>
                 <h6 class="text-center text-secondary mb-0 text-danger">Historia rezerwacji użytkownika jest pusta.</h6><br>
-                <?php
-            }
-            ?>
+            {% endif %}
         </div>
     </div>
 </section>

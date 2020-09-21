@@ -35,7 +35,6 @@
                     </div>
                     <div class="form-group"><button class="btn btn-primary btn-xl" type="submit" name="register" value="register">Zarejestruj</button></div><br><br>
                 </form>
-
             </div>
         </div>
     </div>

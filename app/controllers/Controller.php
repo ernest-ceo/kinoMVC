@@ -1,11 +1,9 @@
 <?php
 
-//namespace app\controllers;
-
 abstract class Controller
 {
+    protected $welcome;
     protected $menu;
-    public $renderer;
     protected $twig;
     protected $model;
     protected $errors;
@@ -20,12 +18,12 @@ abstract class Controller
     {
         $loader = new \Twig\Loader\FilesystemLoader('src/Views');
         $this->twig = new \Twig\Environment($loader);
-        $this->renderer = new Renderer();
-        $this->menu = require 'c:/xampp/htdocs/kinoMVC/config/menu.php';
+        $this->menu = require '/Users/x13/code/kinoMVC/kinoMVC/config/menu.php';
         $this->className = $this->getNameOfTheClass();
         $this->action = $this->getAction();
         $this->id = $this->getId();
         $this->id2 = $this->getId2();
+        $this->setWelcome();
         $this->run();
     }
 
@@ -116,6 +114,15 @@ abstract class Controller
         if(!$this->isAdmin()) {
             header('location: '._BASE_URL_.'index');
             die();
+        }
+    }
+
+    private function setWelcome()
+    {
+        if(isset($_SESSION['username'])) {
+            $this->welcome = 'Witaj ' . $_SESSION['username'] . '!';
+        } else {
+            $this->welcome = 'Witaj!';
         }
     }
 }

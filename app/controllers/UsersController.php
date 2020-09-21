@@ -15,7 +15,13 @@ class UsersController extends Controller
     {
         $this->postProcess();
         $this->options['users'] = $this->getAllUsersForAdmin();
-        $this->renderer->render('Main', 'Users', $this->options);
+        echo $this->twig->render('Main.php', [
+            'welcome' => $this->welcome,
+            'menu' => $this->menu,
+            'options' => $this->options,
+            'content' => 'Users.php',
+            'url' => _BASE_URL_
+        ]);
     }
 
     public function getAllUsersForAdmin()
@@ -35,6 +41,12 @@ class UsersController extends Controller
     public function showReservationsHistory($id)
     {
         $this->options['reservationsHistory'] = $this->model->getAllReservationsByUserID($id);
-        $this->renderer->render('Main', 'UserReservations', $this->options);
+        echo $this->twig->render('Main.php', [
+            'welcome' => $this->welcome,
+            'url' => _BASE_URL_,
+            'menu' => $this->menu,
+            'content' => 'UserReservations.php',
+            'options' => $this->options
+        ]);
     }
 }

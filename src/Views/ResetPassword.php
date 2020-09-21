@@ -1,23 +1,20 @@
-<?php
-if(isset($options['errors']))
-{
-    foreach($options['errors'] as $error)
-    {
-        ?>
-        <p class='text-center text-danger table-dark'><?=$error?></p>
-        <?php
-    }
-    unset($options['errors']);
-}
-?>
+{% if options.errors %}
+{% for error in options.errors %}
+<p class='text-center text-danger table-dark'>{{error}}</p>
+{% endfor %}
+{% endif %}
+
+{% if options.confirmations %}
+{% for confirmation in options.confirmations %}
+<p class='text-center text-success table-dark'>{{confirmation}}</p>
+{% endfor %}
+{% endif %}
     <section class="page-section" id="contact">
         <div class="container">
             <h2 class="page-section-heading text-center text-light mb-0">Proszę podać adres e-mail do zresetowania hasła</h2>
-
-            <!-- Contact Section Form-->
             <div class="row">
                 <div class="col-lg-8 mx-auto">
-                    <form action="<?=_BASE_URL_.'ResetPassword'?>" method="post">
+                    <form action="{{url}}ResetPassword" method="post">
                         <div class="control-group">
                             <div class="form-group controls mb-0 pb-2">
                                 <label class="text-light" for="userEmail">Adres e-mail</label>

@@ -13,13 +13,25 @@ class ShowsController extends Controller
     public function IndexAction()
     {
         $this->options['filmShows'] = $this->model->getAllFilmShows();
-        $this->renderer->render('Main', 'Shows', $this->options);
+        echo $this->twig->render('Main.php', [
+            'welcome' => $this->welcome,
+            'menu' => $this->menu,
+            'content' => 'Shows.php',
+            'url' => _BASE_URL_,
+            'options' => $this->options
+        ]);
     }
 
     public function showReservations($showID)
     {
         $this->adminAuth();
         $this->options['reservationsList'] = $this->model->getAllReservationByShowID($showID);
-        $this->renderer->render('Main', 'ReservationsList', $this->options);
+        echo $this->twig->render('Main.php', [
+            'welcome' => $this->welcome,
+            'content' => 'ReservationsList.php',
+            'menu' => $this->menu,
+            'url' => _BASE_URL_,
+            'options' => $this->options
+        ]);
     }
 }

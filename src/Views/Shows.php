@@ -1,15 +1,9 @@
-<?php
-if(isset($options['errors']))
-{
-    foreach($options['errors'] as $error)
-    {
-        ?>
-        <p class='text-center text-danger table-dark'><?=$error?></p>
-        <?php
-    }
-    unset($options['errors']);
-}
-?>
+{% if options.errors %}
+{% for error in options.errors %}
+<p class='text-center text-danger table-dark'>error</p>
+{% endfor %}
+{% endif %}
+
 <div class="page-section">
     <div class="container">
         <h2 class="page-section-heading text-center text-light mb-0 popover-header">Seanse w Kinie Jastrząb</h2>
@@ -26,21 +20,19 @@ if(isset($options['errors']))
                 </tr>
                 </thead>
                 <tbody>
-                <?php
-                foreach ($options['filmShows'] as $filmShow)
-                {
-                    ?>
-                    <tr>
-                        <td class="text-center"><?=$filmShow['id']?></td>
-                        <td class="text-center"><?=$filmShow['title']?></td>
-                        <td class="text-center"><?=$filmShow['date']?></td>
-                        <td class="text-center"><?=$filmShow['time']?></td>
-                        <td class="text-center"><?=$filmShow['hall_id']?></td>
-                        <td><a class="btn btn-primary btn-xl" href="<?=_BASE_URL_.'shows/showReservations/'.$filmShow['id']?>">Pokaż rezerwacje</a></td>
+
+                {% if options.filmShows %}
+                {% for filmShow in options.filmShows %}
+                <tr>
+                        <td class="text-center">{{filmShow.id}}</td>
+                        <td class="text-center">{{filmShow.title}}</td>
+                        <td class="text-center">{{filmShow.date}}</td>
+                        <td class="text-center">{{filmShow.time}}</td>
+                        <td class="text-center">{{filmShow.hall_id}}</td>
+                        <td><a class="btn btn-primary btn-xl" href="{{_BASE_URL_}}shows/showReservations/{{filmShow.id}}">Pokaż rezerwacje</a></td>
                     </tr>
-                    <?php
-                }
-                ?>
+                {% endfor %}
+                {% endif %}
                 </tbody>
             </table>
         </div>

@@ -17,6 +17,11 @@ class MakeReservationController extends Controller
     public function IndexAction()
     {
         $this->renderer->render('Main', 'MakeReservation');
+        echo $this->twig->render('Main.php', [
+            'content' => 'MakeReservation.php',
+            'menu' => $this->menu,
+            'url' => _BASE_URL_
+        ]);
     }
 
     public function showFreeSeats(int $showID)
@@ -28,7 +33,12 @@ class MakeReservationController extends Controller
         $this->options['confirmations'] = $this->confirmations;
         $this->options['freeSeats'] = $this->model->getUntakenSeats($showID);
         $this->options['show_id'] = $showID;
-        $this->renderer->render('Main', 'Reservation', $this->options);
+        echo $this->twig->render('Main.php', [
+            'content' => 'Reservation.php',
+            'options' => $this->options,
+            'menu' => $this->menu,
+            'url' => _BASE_URL_
+        ]);
     }
 
     public function bookASeat($seatID, $showID)
@@ -54,7 +64,12 @@ class MakeReservationController extends Controller
         $this->confirmationProcess($resvkey);
         $this->options['errors'] = $this->errors;
         $this->options['confirmations'] = $this->confirmations;
-        $this->renderer->render('Main', 'Index', $this->options);
+        echo $this->twig->render('Main.php', [
+            'content' => 'Index.php',
+            'url' => _BASE_URL_,
+            'menu' => $this->menu,
+            'options' => $this->options
+        ]);
     }
 
     private function confirmationProcess($resvkey)

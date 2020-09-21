@@ -21,11 +21,12 @@ class LoginController extends Controller
             die();
         }
         echo $this->twig->render('Main.php', array(
+            'welcome' => $this->welcome,
             'content' => 'Login.php',
             'menu' => $this->menu,
-            'url' => _BASE_URL_
+            'url' => _BASE_URL_,
+            'options' => $this->options
         ));
-//        $this->renderer->render('Main', 'Login', $this->options);
     }
 
     public function postProcess()

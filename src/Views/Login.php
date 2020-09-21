@@ -1,9 +1,7 @@
     <br/>
     <br/>
     <div class="container">
-        <!-- Contact Section Heading-->
         <h2 class="page-section-heading text-center text-uppercase text-light mb-0">Wprowadź dane logowania</h2>
-        <!-- Contact Section Form-->
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <form action="{{url}}login" method="post">
@@ -14,8 +12,6 @@
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
-
-
                     <div class="control-group">
                         <div class="form-group controls mb-0 pb-2">
                             <label class="text-light" for="password">Hasło</label>
@@ -23,40 +19,21 @@
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
-
-
                     <div class="form-group"><button class="btn btn-primary btn-xl" type="submit" name="logIn" value="logIn">Zaloguj</button></div>
-
                 </form>
-                <p class="text-left"><a href="{{url}}ResetPassword'">Zapomniałem hasła</a></p>
+                <p class="text-left"><a href="{{url}}ResetPassword">Zapomniałem hasła</a></p>
 
             </div>
         </div>
     </div>
-    <!-- </section> -->
+{% if options.errors %}
+{% for error in options.errors %}
+<p class='text-center text-danger table-dark'>{{error}}</p>
+{% endfor %}
+{% endif %}
 
-
-
-
-
-
-    <?php
-}
-if(isset($options['errors']))
-{
-    foreach($options['errors'] as $error) {
-        ?><p class='text-center text-danger table-dark'><?=$error?></p><?php
-    }
-    unset($options['errors']);
-}
-if(isset($options['confirmations']))
-{
-    foreach($options['confirmations'] as $confirmation)
-    {
-        ?>
-        <p class='text-center text-success table-dark'><?=$confirmation?></p>
-        <?php
-    }
-    unset($options['errors']);
-}
-?>
+{% if options.confirmations %}
+{% for confirmation in options.confirmations %}
+<p class='text-center text-success table-dark'>{{confirmation}}</p>
+{% endfor %}
+{% endif %}

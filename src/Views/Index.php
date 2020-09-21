@@ -1,25 +1,14 @@
-<?php
-if(isset($options['errors']))
-{
-    foreach($options['errors'] as $error)
-    {
-        ?>
-        <p class='text-center text-danger table-dark'><?=$error?></p>
-        <?php
-    }
-    unset($options['errors']);
-}
-if(isset($options['confirmations']))
-{
-    foreach($options['confirmations'] as $confirmation)
-    {
-        ?>
-        <p class='text-center text-success table-dark'><?=$confirmation?></p>
-        <?php
-    }
-    unset($options['errors']);
-}
-?>
+{% if options.errors %}
+{% for error in options.errors %}
+<p class='text-center text-danger table-dark'>{{error}}</p>
+{% endfor %}
+{% endif %}
+
+{% if options.confirmations %}
+{% for confirmation in options.confirmations %}
+<p class='text-center text-success table-dark'>{{confirmation}}</p>
+{% endfor %}
+{% endif %}
 
 <div class="page-section">
     <h1 class="page-section-heading text-center text-light mb-5">Polecane w Kinie Jastrząb</h1>

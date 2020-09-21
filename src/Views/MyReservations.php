@@ -1,15 +1,8 @@
-<?php
-if(isset($options['errors']))
-{
-    foreach($options['errors'] as $error)
-    {
-        ?>
-        <p class='text-center text-danger table-dark'><?=$error?></p>
-        <?php
-    }
-    unset($options['errors']);
-}
-?>
+{% if options.errors %}
+{% for error in options.errors %}
+<p class='text-center text-danger table-dark'>error</p>
+{% endfor %}
+{% endif %}
 <div class="page-section">
     <div class="container">
 

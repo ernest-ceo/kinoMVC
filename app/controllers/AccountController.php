@@ -18,7 +18,14 @@ class AccountController extends Controller
         }
         $this->options['errors'] = $this->errors;
         $this->options['reservationList'] = $this->loadUserReservationList();
-        $this->renderer->render('Main', 'Account', $this->options);
+        echo $this->twig->render('Main.php', [
+            'welcome' => $this->welcome,
+            'content' => 'Account.php',
+            'menu' => $this->menu,
+            'options' => $this->options,
+            'url' => _BASE_URL_
+            ]);
+
         unset($this->options);
         unset($this->errors);
     }
@@ -29,7 +36,12 @@ class AccountController extends Controller
             $this->errors[] = "Nie udało się odwołać rezerwacji!";
         $this->options['errors'] = $this->errors;
         $this->options['reservationList'] = $this->loadUserReservationList();
-        $this->renderer->render('Main', 'Account', $this->options);
+        echo $this->twig->render('Main.php', [
+            'content' => 'Account.php',
+            'options' => $this->options,
+            'menu' => $this->menu,
+            'url' => _BASE_URL_
+        ]);
         unset($this->options);
         unset($this->errors);
     }
@@ -47,7 +59,12 @@ class AccountController extends Controller
                 $this->errors[] = "Nie udało się usunąć konta!";
                 $this->options['errors'] = $this->errors;
                 $this->options['reservationList'] = $this->loadUserReservationList();
-                $this->renderer->render('Main', 'Account', $this->options);
+                echo $this->twig->render('Main.php', [
+                    'content' => 'Account.php',
+                    'menu' => $this->menu,
+                    'url' => _BASE_URL_,
+                    'options' => $this->options
+                ]);
                 unset($this->options);
                 unset($this->errors);
                 return;
@@ -61,6 +78,12 @@ class AccountController extends Controller
         } else {
             $this->options['errors'] = $this->errors;
             $this->options['reservationList'] = $this->loadUserReservationList();
+            echo $this->twig->render('Main.php', [
+                'content' => 'Account.php',
+                'menu' => $this->menu,
+                'url' => _BASE_URL_,
+                'options' => $this->options
+            ]);
             $this->renderer->render('Main', 'Account', $this->options);
             unset($this->options);
             unset($this->errors);

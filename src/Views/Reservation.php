@@ -1,31 +1,17 @@
-<?php
-declare(strict_types=1);
-?>
 <section class="page-section">
     <div class="container">
-        <?php
-        if(isset($options['errors']))
-        {
-            foreach($options['errors'] as $error)
-            {
-                ?>
-                <p class='text-center text-danger table-dark'><?=$error?></p>
-                <?php
-            }
-            unset($options['errors']);
-        }
-        if(isset($options['confirmations']))
-        {
-            foreach($options['confirmations'] as $confirmation)
-            {
-                ?>
-                <p class='text-center text-success table-dark'><?=$confirmation?></p>
-                <?php
-            }
-            unset($options['errors']);
-            unset($options['confirmations']);
-        }
-        ?>
+    {% if options.errors %}
+    {% for error in options.errors %}
+        <p class='text-center text-danger table-dark'>{{error}}</p>
+    {% endfor %}
+    {% endif %}
+
+    {% if options.confirmations %}
+    {% for confirmation in options.confirmations %}
+        <p class='text-center text-success table-dark'>{{confirmation}}</p>
+    {% endfor %}
+    {% endif %}
+
     </div>
     </div>
     <section class="page-section">
@@ -42,43 +28,34 @@ declare(strict_types=1);
                     </tr>
                     </thead>
                     <tbody>
-                    <?php
-                    if (is_array($options['freeSeats']) && sizeof($options['freeSeats']) != 0) {
-                    foreach($options['freeSeats'] as $freeSeat)
-                    {
-                        ?>
+
+                    {% if options.freeSeats %}
+                    {% for freeSeat in options.freeSeats %}
                         <tr>
                             <td class="text-center">
-                                <?=$freeSeat['seat_row']?>
+                                {{freeSeat.seat_row}}
                             </td>
                             <td class="text-center">
-                                <?=$freeSeat['seat_number']?>
+                                {{freeSeat.seat_number}}
                             </td>
                             <td class="text-center">
-                                <a href="<?=_BASE_URL_.'MakeReservation/bookASeat/'.$freeSeat['id'].'/'.$options['show_id']?>">
+                                <a href="{{url}}MakeReservation/bookASeat/{{freeSeat.id}}/{{options.show_id}}">
                                     <button class="btn btn-primary btn-xl">Wybierz miejsce</button>
                                 </a>
                             </td>
-
                         </tr>
-                        <?php
-                    }
-                    ?>
+                        {% endfor %}
                     </tbody>
                 </table>
-                <?php
-                } else {
-                    ?>
+                {% else %}
                     </tbody>
                     </table>
                     <h6 class="text-center text-secondary mb-0 text-danger">
                         Ten seans został wyprzedany. Zachęcamy do przejrzenia
-                        <a href="<?=_BASE_URL_.'repertoire'?>">repertuaru</a>
+                        <a href="{{url}}repertoire">repertuaru</a>
                         , aby wybrać inny termin.
                     </h6>
-                    <?php
-                }
-                ?>
+                {% endif %}
             </div>
         </div>
         </div>

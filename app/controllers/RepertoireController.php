@@ -40,7 +40,6 @@ class RepertoireController extends Controller
                 'content' => $content,
                 'shows' => $shows
             ));
-//        $this->renderer->render('Main', 'Repertoire', $this->options);
         unset($this->options);
     }
 

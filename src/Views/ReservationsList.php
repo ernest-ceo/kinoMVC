@@ -9,36 +9,27 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php
-                if (is_array($options['reservationsList']) && sizeof($options['reservationsList']) != 0) {
-                foreach ($options['reservationsList'] as $reservation)
-                {
-                    ?>
 
-                    <tr>
-                        <td class="text-center"><?=$reservation['id']?></td>
-                        <td class="text-center"><?=$reservation['username']?></td>
-                        <td class="text-center"><?=$reservation['title']?></td>
-                        <td class="text-center"><?=$reservation['date']?></td>
-                        <td class="text-center"><?=$reservation['time']?></td>
-                        <td class="text-center"><?=$reservation['hall_id']?></td>
-                        <td class="text-center"><?=$reservation['seat_row']?></td>
-                        <td class="text-center"><?=$reservation['seat_number']?></td>
-                    </tr>
-                    <?php
-                }
-                ?>
+                {% if options.reservationsList %}
+                {% for reservation in options.reservationsList %}
+                <tr>
+                    <td class="text-center">{{reservation.id}}</td>
+                    <td class="text-center">{{reservation.username}}</td>
+                    <td class="text-center">{{reservation.title}}</td>
+                    <td class="text-center">{{reservation.date}}</td>
+                    <td class="text-center">{{reservation.time}}</td>
+                    <td class="text-center">{{reservation.hall_id}}</td>
+                    <td class="text-center">{{reservation.seat_row}}</td>
+                    <td class="text-center">{{reservation.seat_number}}</td>
+                </tr>
+                {% endfor %}
                 </tbody>
             </table>
-            <?php
-            } else {
-                ?>
+            {% else %}
                 </tbody>
                 </table>
                 <h6 class="text-center text-secondary mb-0 text-danger">Na ten seans nie dokonano rezerwacji.</h6>
-                <?php
-            }
-            ?>
+            {% endif %}
         </div>
     </div>
 </div>

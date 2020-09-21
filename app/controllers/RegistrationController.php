@@ -19,11 +19,11 @@ class RegistrationController extends Controller
         $this->options['errors'] = $this->errors;
         $this->options['confirmations'] = $this->confirmations;
         echo $this->twig->render('Main.php', array(
+            'welcome' =>$this->welcome,
             'content' => 'Registration.php',
             'menu' => $this->menu,
             'url' => _BASE_URL_
         ));
-//        $this->renderer->render('Main', 'Registration', $this->options);
     }
 
     private function postProcess()

@@ -18,7 +18,12 @@ class ResetPasswordController extends Controller
         $this->postProcess();
         $this->options['errors'] = $this->errors;
         $this->options['confirmations'] = $this->confirmations;
-        $this->renderer->render('Main', 'ResetPassword', $this->options);
+        echo $this->twig->render('Main.php', [
+            'content' => 'ResetPassword.php',
+            'url' => _BASE_URL_,
+            'menu' => $this->menu,
+            'options' => $this->options
+        ]);
     }
 
     private function postProcess()
@@ -53,16 +58,32 @@ class ResetPasswordController extends Controller
     public function insertNewPassword($vkey)
     {
         $this->options['vkey'] = $vkey;
-        $this->renderer->render('Main', 'InsertNewPassword', $this->options);
+        echo $this->twig->render('Main.php', [
+            'url' => _BASE_URL_,
+            'menu' => $this->menu,
+            'options' => $this->options,
+            'content' => 'InsertNewPassword.php'
+        ]);
     }
 
     public function setNewPassword()
     {
+        $this->updatePasswordProccess();
+        $this->options['errors'] = $this->errors;
+        $this->options['confirmations'] = $this->confirmations;
+        echo $this->twig->render('Main.php', [
+            'content' => 'Index.php',
+            'menu' => $this->menu,
+            'url' => _BASE_URL_,
+            'options' => $this->options
+        ]);
+
+    }
+
+    private function updatePasswordProccess()
+    {
         if(!isset($_POST['vkey'])) {
-            $this->errors[] = "Nie podano klucza weryfikacyjnego!";
-            $this->options['errors'] = $this->errors;
-            $this->renderer->render('Main', 'Index', $this->options);
-            return;
+            return $this->errors[] = "Nie podano klucza weryfikacyjnego!";
         }
         $vkey = $_POST['vkey'];
         if(isset($_POST['setNewPassword']))
@@ -73,10 +94,8 @@ class ResetPasswordController extends Controller
             if(!$this->model->setNewPassword($_POST['newPassword'], $vkey, "tajny klucz")) {
                 return $this->errors[] = "Nie ustawiono nowego hasła!";
             }
+            return $this->confirmations[] = "Ustawiono nowe hasło.";
         }
-        $this->confirmations[] = "Ustawiono nowe hasło.";
-        $this->options['confirmations'] = $this->confirmations;
-        $this->renderer->render('Main', 'Index', $this->options);
     }
 
     private function isNewPasswordOk()

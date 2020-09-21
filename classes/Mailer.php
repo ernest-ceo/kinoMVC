@@ -22,9 +22,13 @@ class Mailer
 //            $this->mailer->Host = 'mail.bd19587.wsbpoz.solidhost.pl';
 //            $this->mailer->Username = 'projektkinowsb@bd19587.wsbpoz.solidhost.pl';
 //            $this->mailer->Password = 'projektkinoWSB1!';
+            // $this->mailer->Host = 'smtp.mailtrap.io';
+            // $this->mailer->Username = '20f99de4000faa';
+            // $this->mailer->Password = '0a882300f33477';
+
             $this->mailer->Host = 'smtp.mailtrap.io';
-            $this->mailer->Username = '20f99de4000faa';
-            $this->mailer->Password = '0a882300f33477';
+            $this->mailer->Username = 'b5f3e978c47aa5';
+            $this->mailer->Password = 'bcfd84adc6d686';
             $this->mailer->SMTPAuth = true;
             $this->mailer->SMTPSecure = \PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
             $this->mailer->Port = 587;

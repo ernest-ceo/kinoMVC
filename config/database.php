@@ -8,12 +8,12 @@ declare(strict_types=1);
 //    'password' => 'Kino12345!',
 //];
 
-return [
+return array(
     'dbname' => 'kino',
     'host' => 'localhost',
     'user' => 'root',
-    'password' => '',
-];
+    'password' => 'root'
+);
 
 //return [
 //    'dbname' => 'kino',
